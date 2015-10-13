@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/uwaseem/ChuckNorrisJokeBot/issues"
   },
-  "homepage": "https://github.com/uwaseem/ChuckNorrisJokeBot#readme"
+  "homepage": "https://github.com/uwaseem/ChuckNorrisJokeBot#readme",
+  "dependencies": {
+    "twit": "^2.1.0"
+  }
 }
