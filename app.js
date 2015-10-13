@@ -11,9 +11,11 @@ const T = new Twit({
   'access_token_secret': ACCESS_TOKEN_SECRET
 });
 
+let randomJoke;
+
 /*getRandomJoke => */
 function getRandomJoke() {
-  let url = 'http://api.icndb.com/jokes/random?firstName=John&amp;lastName=Doe';
+  let url = 'http://api.icndb.com/jokes/random';
 
   request({
     url: url,
@@ -23,9 +25,18 @@ function getRandomJoke() {
       console.log('Failed');
       return;
     }
-
     console.log(res.body);
+    return res.body;
   });
 }
 
-getRandomJoke();
+randomJoke = getRandomJoke();
+
+T.post('statuses/update', {
+  status: randomJoke || 'Test, this is my first tweet',
+}, function(err, data, response) {
+  if(err) {
+    return;
+  }
+  console.log('done');
+});
