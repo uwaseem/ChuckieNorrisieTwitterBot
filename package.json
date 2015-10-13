@@ -2,7 +2,7 @@
   "name": "chuck-norris-joke-bot",
   "version": "1.0.0",
   "description": "Twitter bot that tweets random Chuck Norris jokes.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/uwaseem/ChuckNorrisJokeBot#readme",
   "dependencies": {
-    "twit": "^2.1.0"
+    "twit": "^2.1.0",
+    "wordfilter": "^0.2.1"
   }
 }
