@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/uwaseem/ChuckNorrisJokeBot#readme",
   "dependencies": {
+    "babel": "^5.8.23",
     "twit": "^2.1.0",
     "wordfilter": "^0.2.1"
   }
