@@ -11,7 +11,7 @@ const T = new Twit({
   'access_token_secret': ACCESS_TOKEN_SECRET
 });
 
-let randomJoke;
+// let randomJoke;
 
 function offensiveJoke(word) {
   if(!wordfilter.blacklisted(word)) {
@@ -61,8 +61,12 @@ function postTweet(tweet) {
   });
 }
 
-
-setInterval(function() {
-  randomJoke = getRandomJoke();
-  // postTweet(randomJoke);
+setInterval(async function() {
+  try {
+    let randomJoke = await getRandomJoke();
+    console.log('HELLO ---> ', randomJoke);
+    // postTweet(randomJoke);
+  } catch(err) {
+    console.log(err);
+  }
 }, 5000);
