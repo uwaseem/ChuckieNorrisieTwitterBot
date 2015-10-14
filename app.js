@@ -13,7 +13,6 @@ const T = new Twit({
 
 let randomJoke;
 
-/*getRandomJoke => */
 function getRandomJoke() {
   let url = 'http://api.icndb.com/jokes/random';
 
@@ -30,13 +29,21 @@ function getRandomJoke() {
   });
 }
 
-randomJoke = getRandomJoke();
+function postTweet(tweet) {
+  T.post('statuses/update', {
+    status: tweet || 'Test, this is my first tweet',
+  }, function(err, data, response) {
+    if(err) {
+      return;
+    }
+    console.log('done');
+  });
+}
 
-T.post('statuses/update', {
-  status: randomJoke || 'Test, this is my first tweet',
-}, function(err, data, response) {
-  if(err) {
-    return;
-  }
-  console.log('done');
-});
+
+setInterval(function() {
+  randomJoke = getRandomJoke();
+  postTweet(randomJoke);
+  console.log(randomJoke);
+  console.log('Hello ...');
+}, 10000);
