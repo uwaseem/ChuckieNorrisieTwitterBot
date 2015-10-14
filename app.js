@@ -13,7 +13,7 @@ const T = new Twit({
 
 let randomJoke;
 
-function checkOffensive(word) {
+function offensiveJoke(word) {
   if(!wordfilter.blacklisted(word)) {
     return false;
   } else {
@@ -42,7 +42,7 @@ function getRandomJoke() {
     }
 
     let { value } = JSON.parse(res.body);
-    if(checkOffensive(value.joke) || filterJoke(value.joke) || value.joke > 140) {
+    if(offensiveJoke(value.joke) || filterJoke(value.joke) || value.joke > 140) {
       getRandomJoke();
     } else {
       return value.joke;
