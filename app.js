@@ -42,11 +42,9 @@ function getRandomJoke() {
     }
 
     let { value } = JSON.parse(res.body);
-    console.log(value.joke);
-    if(checkOffensive(value.joke) || filterJoke(value.joke)) {
+    if(checkOffensive(value.joke) || filterJoke(value.joke) || value.joke > 140) {
       getRandomJoke();
     } else {
-      console.log(value.joke);
       return value.joke;
     }
   });
