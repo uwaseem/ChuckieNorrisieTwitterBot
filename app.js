@@ -45,10 +45,10 @@ function getRandomJoke() {
     console.log(value.joke);
     if(checkOffensive(value.joke) || filterJoke(value.joke)) {
       getRandomJoke();
+    } else {
+      console.log(value.joke);
+      return value.joke;
     }
-
-    console.log(value.joke);
-    return value.joke;
   });
 }
 
