@@ -13,8 +13,24 @@ const T = new Twit({
 
 let randomJoke;
 
+function checkOffensive(word) {
+  if(!wordfilter.blacklisted(word)) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function filterJoke(joke) {
+  if(joke.match(/(&quot;)/)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function getRandomJoke() {
-  let url = 'http://api.icndb.com/jokes/random';
+  let url = 'http://api.icndb.com/jokes/random?exclude=[explicit]';
 
   request({
     url: url,
@@ -24,8 +40,15 @@ function getRandomJoke() {
       console.log('Failed');
       return;
     }
-    console.log(res.body);
-    return res.body;
+
+    let { value } = JSON.parse(res.body);
+    console.log(value.joke);
+    if(checkOffensive(value.joke) || filterJoke(value.joke)) {
+      getRandomJoke();
+    }
+
+    console.log(value.joke);
+    return value.joke;
   });
 }
 
@@ -43,7 +66,5 @@ function postTweet(tweet) {
 
 setInterval(function() {
   randomJoke = getRandomJoke();
-  postTweet(randomJoke);
-  console.log(randomJoke);
-  console.log('Hello ...');
-}, 10000);
+  // postTweet(randomJoke);
+}, 5000);
