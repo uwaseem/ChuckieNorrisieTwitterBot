@@ -11,10 +11,26 @@ const T = new Twit({
   'access_token_secret': ACCESS_TOKEN_SECRET
 });
 
-let randomJoke;
+// let randomJoke;
+
+function offensiveJoke(word) {
+  if(!wordfilter.blacklisted(word)) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function filterJoke(joke) {
+  if(joke.match(/(&quot;)/)) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 function getRandomJoke() {
-  let url = 'http://api.icndb.com/jokes/random';
+  let url = 'http://api.icndb.com/jokes/random?exclude=[explicit]';
 
   request({
     url: url,
@@ -24,8 +40,13 @@ function getRandomJoke() {
       console.log('Failed');
       return;
     }
-    console.log(res.body);
-    return res.body;
+
+    let { value } = JSON.parse(res.body);
+    if(offensiveJoke(value.joke) || filterJoke(value.joke) || value.joke > 140) {
+      getRandomJoke();
+    } else {
+      return value.joke;
+    }
   });
 }
 
@@ -40,10 +61,12 @@ function postTweet(tweet) {
   });
 }
 
-
-setInterval(function() {
-  randomJoke = getRandomJoke();
-  postTweet(randomJoke);
-  console.log(randomJoke);
-  console.log('Hello ...');
-}, 10000);
+setInterval(async function() {
+  try {
+    let randomJoke = await getRandomJoke();
+    console.log('HELLO ---> ', randomJoke);
+    // postTweet(randomJoke);
+  } catch(err) {
+    console.log(err);
+  }
+}, 5000);
