@@ -1,12 +1,13 @@
 {
   "browser": true,
   "browserify": true,
-  "devel": true,
   "camelcase": true,
   "curly": true,
+  "devel": true,
   "esnext": true,
   "indent": 2,
   "newcap": true,
+  "shadow": false,
   "undef": true,
   "unused": true
 }
