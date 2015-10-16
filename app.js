@@ -64,7 +64,7 @@ function postTweet(tweet) {
 setInterval(async function() {
   try {
     let randomJoke = await getRandomJoke();
-    console.log('HELLO ---> ', randomJoke);
+    // console.log('HELLO ---> ', randomJoke);
     // postTweet(randomJoke);
   } catch(err) {
     console.log(err);
