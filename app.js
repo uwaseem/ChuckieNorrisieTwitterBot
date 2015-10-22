@@ -11,16 +11,6 @@ const T = new Twit({
   'access_token_secret': ACCESS_TOKEN_SECRET
 });
 
-function callback(err, result) {
-  if(err) {
-    console.log(err, ' <------ in callback');
-    return;
-  } else {
-    console.log(result, ' <------ in callback');
-    return result;
-  }
-}
-
 function offensiveJoke(word) {
   if(!wordfilter.blacklisted(word)) {
     return false;
@@ -37,43 +27,31 @@ function filterJoke(joke) {
   }
 }
 
-function getRandomJoke(callback) {
+function getRandomJoke() {
   let url = 'http://api.icndb.com/jokes/random?exclude=[explicit]';
 
-  request({
-    url: url,
-    method: 'GET'
-  }, function(err, res) {
-    if(err) {
-      console.log('Failed');
-      return err;
-    }
+  return new Promise(function(resolve, reject) {
+    request({
+      url: url,
+      method: 'GET'
+    }, function(err, res) {
+      if(err) {
+        console.log('Failed');
+        return err;
+      }
 
-    let { value } = JSON.parse(res.body);
-    if(offensiveJoke(value.joke) || filterJoke(value.joke) || value.joke.length > 140) {
-      getRandomJoke(callback);
-    } else {
-      console.log(value.joke, ' <------- in function');
-      callback(err, value.joke);
-    }
+      let { value } = JSON.parse(res.body);
+
+      if(offensiveJoke(value.joke) || filterJoke(value.joke) || value.joke.length > 140) {
+        getRandomJoke();
+      } else {
+        resolve(value.joke);
+      }
+    });
   });
 }
 
-/*function postTweet(tweet) {
-  T.post('statuses/update', {
-    status: tweet || 'Test, this is my first tweet',
-  }, function(err, data, response) {
-    if(err) {
-      return;
-    }
-    console.log('done');
-  });
-}*/
-
-setInterval(function() {
-  console.log('HELLO');
-  let randomJoke = getRandomJoke(callback);
-  setTimeout(function() {
-    console.log(randomJoke);
-  }, 3000);
+setInterval(async function() {
+  let randomJoke = await getRandomJoke();
+  console.log(randomJoke);
 }, 5000);
