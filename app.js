@@ -11,8 +11,6 @@ const T = new Twit({
   'access_token_secret': ACCESS_TOKEN_SECRET
 });
 
-// let randomJoke;
-
 function offensiveJoke(word) {
   if(!wordfilter.blacklisted(word)) {
     return false;
@@ -32,41 +30,28 @@ function filterJoke(joke) {
 function getRandomJoke() {
   let url = 'http://api.icndb.com/jokes/random?exclude=[explicit]';
 
-  request({
-    url: url,
-    method: 'GET'
-  }, function(err, res) {
-    if(err) {
-      console.log('Failed');
-      return;
-    }
+  return new Promise(function(resolve, reject) {
+    request({
+      url: url,
+      method: 'GET'
+    }, function(err, res) {
+      if(err) {
+        console.log('Failed');
+        return err;
+      }
 
-    let { value } = JSON.parse(res.body);
-    if(offensiveJoke(value.joke) || filterJoke(value.joke) || value.joke > 140) {
-      getRandomJoke();
-    } else {
-      return value.joke;
-    }
-  });
-}
+      let { value } = JSON.parse(res.body);
 
-function postTweet(tweet) {
-  T.post('statuses/update', {
-    status: tweet || 'Test, this is my first tweet',
-  }, function(err, data, response) {
-    if(err) {
-      return;
-    }
-    console.log('done');
+      if(offensiveJoke(value.joke) || filterJoke(value.joke) || value.joke.length > 140) {
+        getRandomJoke();
+      } else {
+        resolve(value.joke);
+      }
+    });
   });
 }
 
 setInterval(async function() {
-  try {
-    let randomJoke = await getRandomJoke();
-    // console.log('HELLO ---> ', randomJoke);
-    // postTweet(randomJoke);
-  } catch(err) {
-    console.log(err);
-  }
+  let randomJoke = await getRandomJoke();
+  console.log(randomJoke);
 }, 5000);
