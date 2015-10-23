@@ -36,7 +36,6 @@ function getRandomJoke() {
       method: 'GET'
     }, function(err, res) {
       if(err) {
-        console.log('Failed to get joke');
         return err;
       }
 
@@ -52,7 +51,6 @@ function getRandomJoke() {
 }
 
 function postTweet(tweet) {
-  console.log('Entering');
   T.post('statuses/update', { status: tweet }, function(err, data, response) {
     if(err) {
       console.log('Failed to post tweet');
