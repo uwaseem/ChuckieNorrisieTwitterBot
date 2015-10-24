@@ -1,5 +1,5 @@
 {
-  "name": "chuck-norris-joke-bot",
+  "name": "chuckie-norrisie-twitter-bot",
   "version": "1.0.0",
   "description": "Twitter bot that tweets random Chuck Norris jokes.",
   "main": "app.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/uwaseem/ChuckNorrisJokeBot.git"
+    "url": "https://github.com/uwaseem/ChuckieNorrisieTwitterBot"
   },
   "author": "uwaseem",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/uwaseem/ChuckNorrisJokeBot/issues"
+    "url": "https://github.com/uwaseem/ChuckieNorrisieTwitterBot/issues"
   },
-  "homepage": "https://github.com/uwaseem/ChuckNorrisJokeBot#readme",
+  "homepage": "https://github.com/uwaseem/ChuckieNorrisieTwitterBot#readme",
   "dependencies": {
     "babel": "^5.8.23",
     "express": "^4.13.3",
