@@ -1,14 +1,21 @@
+let express = require('express');
 let Twit = require('twit');
 let wordfilter = require('wordfilter');
 let request = require('request');
 
+let app = express();
+app.get('/', function(req, res) {
+  res.status(200).json({message:'The twitter bot is working just fine'});
+});
+app.listen(process.env.PORT || 3000);
+
 import {API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET} from './config/config.json';
 
 const T = new Twit({
-  'consumer_key': API_KEY,
-  'consumer_secret': API_SECRET,
-  'access_token': ACCESS_TOKEN,
-  'access_token_secret': ACCESS_TOKEN_SECRET
+  'consumer_key': process.env.API_KEY || API_KEY,
+  'consumer_secret': process.env.API_SECRET || API_SECRET,
+  'access_token': process.env.ACCESS_TOKEN || ACCESS_TOKEN,
+  'access_token_secret': process.env.ACCESS_TOKEN_SECRET || ACCESS_TOKEN_SECRET
 });
 
 function offensiveJoke(word) {
