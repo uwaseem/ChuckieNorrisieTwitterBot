@@ -11,6 +11,7 @@ app.listen(process.env.PORT || 3000);
 
 import {API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET} from './config/config.json';
 
+const TWEET_INTERVAL_HOURS = 6;
 const T = new Twit({
   'consumer_key': process.env.API_KEY || API_KEY,
   'consumer_secret': process.env.API_SECRET || API_SECRET,
@@ -68,4 +69,17 @@ function postTweet(tweet) {
 setInterval(async function() {
   let randomJoke = await getRandomJoke();
   postTweet(randomJoke);
-}, 21600000);
+}, (TWEET_INTERVAL_HOURS * 1000 * 60 * 60));
+
+function trackMentions(twitterHandler) {
+  let stream = T.stream('statuses/filter', {track:`@${twitterHandler}`});
+
+  stream.on('tweet', function(tweet) {
+    let asker = tweet.user.screen_name;
+    let text = tweet.text;
+
+    console.log(`${asker} says ${text}`);
+  });
+}
+
+trackMentions('ChuckieNorrisie');
