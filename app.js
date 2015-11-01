@@ -72,7 +72,7 @@ setInterval(async function() {
 }, (TWEET_INTERVAL_HOURS * 1000 * 60 * 60));
 
 function trackMentions(twitterHandler) {
-  let stream = T.stream('statuses/filter', {track:`@${twitterHandler}`});
+  let stream = T.stream('statuses/filter', {track:twitterHandler});
 
   stream.on('tweet', function(tweet) {
     let asker = tweet.user.screen_name;
@@ -82,4 +82,4 @@ function trackMentions(twitterHandler) {
   });
 }
 
-trackMentions('ChuckieNorrisie');
+trackMentions('@ChuckieNorrisie');
