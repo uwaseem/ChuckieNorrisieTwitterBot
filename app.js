@@ -28,7 +28,7 @@ function offensiveJoke(word) {
 }
 
 function filterJoke(joke) {
-  if(joke.match(/(&quot;)/)) {
+  if(joke.match(/(&quot;)/) || joke.match(/\?[^$\?]/)) {
     return true;
   } else {
     return false;
