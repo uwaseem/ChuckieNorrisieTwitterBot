@@ -11,6 +11,7 @@ app.listen(process.env.PORT || 3000);
 
 import {API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET} from './config/config.json';
 
+const URL_ICNDB = 'http://api.icndb.com/jokes';
 const TWEET_INTERVAL_HOURS = 6;
 const T = new Twit({
   'consumer_key': API_KEY,
@@ -36,7 +37,7 @@ function filterJoke(joke) {
 }
 
 function getRandomJoke() {
-  let url = 'http://api.icndb.com/jokes/random?exclude=[explicit]';
+  let url = `${URL_ICNDB}/random?exclude=[explicit]`;
 
   return new Promise(function(resolve, reject) {
     request({
