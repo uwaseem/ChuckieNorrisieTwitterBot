@@ -36,7 +36,7 @@ function filterJoke(joke) {
   }
 }
 
-function getRandomJoke() {
+function getRandomJoke(maxLength) {
   let url = `${URL_ICNDB}/random?exclude=[explicit]`;
 
   return new Promise(function(resolve, reject) {
@@ -50,8 +50,8 @@ function getRandomJoke() {
 
       let { value } = JSON.parse(res.body);
 
-      if(offensiveJoke(value.joke) || filterJoke(value.joke) || value.joke.length > 140) {
-        getRandomJoke();
+      if(offensiveJoke(value.joke) || filterJoke(value.joke) || value.joke.length > maxLength) {
+        getRandomJoke(maxLength);
       } else {
         resolve(value.joke);
       }
@@ -67,10 +67,12 @@ function postTweet(tweet) {
   });
 }
 
-setInterval(async function() {
-  let randomJoke = await getRandomJoke();
-  postTweet(randomJoke);
-}, (TWEET_INTERVAL_HOURS * 1000 * 60 * 60));
+function tweetJoke() {
+  setInterval(async function() {
+    let randomJoke = await getRandomJoke(maxLength);
+    postTweet(randomJoke);
+  }, (TWEET_INTERVAL_HOURS * 1000 * 60 * 60));
+}
 
 function trackMentions(twitterHandler) {
   let stream = T.stream('statuses/filter', {track:twitterHandler});
@@ -83,4 +85,6 @@ function trackMentions(twitterHandler) {
   });
 }
 
+/*ACTIONS*/
 trackMentions('@ChuckieNorrisie');
+tweetJoke();
