@@ -86,9 +86,10 @@ function trackMentions(twitterHandler) {
   });
 }
 
-function imageSearch() {
-  let url = `${URL_GOOGLE_CS}?key=${GOOGLE_CUSTOM_SEARCH}&cx=${GOOGLE_CS_ID}&q=chuck+norris+portrait&searchType=image&imgColorType=color`;
-  console.log(url);
+function imageSearch(query) {
+  query = query.replace(/ /g, '+');
+  let url = `${URL_GOOGLE_CS}?key=${GOOGLE_CUSTOM_SEARCH}&cx=${GOOGLE_CS_ID}&q=${query}&searchType=image&imgColorType=color`;
+
   return new Promise(function(resolve, reject) {
     request({
       url: url,
@@ -97,13 +98,13 @@ function imageSearch() {
       if(err) {
         return err;
       }
-
-      console.log(res.body);
+      let { items } = JSON.parse(res.body);
+      resolve(items);
     });
   });
 };
 
 /*ACTIONS*/
-imageSearch();
+imageSearch('Chuck Norris Portrait');
 // trackMentions('@ChuckieNorrisie');
 // tweetJoke();
