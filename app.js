@@ -68,7 +68,7 @@ function postTweet(tweet) {
   });
 }
 
-function tweetJoke() {
+function updateTwitter() {
   setInterval(async function() {
     let randomJoke = await getRandomJoke(maxLength);
     postTweet(randomJoke);
@@ -83,6 +83,7 @@ function trackMentions(twitterHandler) {
     let text = tweet.text;
 
     console.log(`${asker} says ${text}`);
+    replyTweetWithJoke();
   });
 }
 
@@ -102,9 +103,15 @@ function imageSearch(query) {
       resolve(items);
     });
   });
-};
+}
+
+async function replyTweetWithJoke() {
+  let images = await imageSearch('Chuck Norris Portrait');
+  let image = images[Math.floor(Math.random() * 10)];
+  console.log(image);
+}
 
 /*ACTIONS*/
-imageSearch('Chuck Norris Portrait');
+replyTweetWithJoke();
 // trackMentions('@ChuckieNorrisie');
-// tweetJoke();
+// updateTwitter();
