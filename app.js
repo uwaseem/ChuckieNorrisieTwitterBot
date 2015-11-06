@@ -9,10 +9,11 @@ app.get('/', function(req, res) {
 });
 app.listen(process.env.PORT || 3000);
 
-import {API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET} from './config/config.json';
+import {API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET, GOOGLE_CUSTOM_SEARCH, GOOGLE_CS_ID} from './config/config.json';
 
 const URL_ICNDB = 'http://api.icndb.com/jokes';
-const TWEET_INTERVAL_HOURS = 6;
+const URL_GOOGLE_CS = 'https://www.googleapis.com/customsearch/v1';
+
 const T = new Twit({
   'consumer_key': API_KEY,
   'consumer_secret': API_SECRET,
@@ -71,7 +72,7 @@ function tweetJoke() {
   setInterval(async function() {
     let randomJoke = await getRandomJoke(maxLength);
     postTweet(randomJoke);
-  }, (TWEET_INTERVAL_HOURS * 1000 * 60 * 60));
+  }, (6 * 1000 * 60 * 60));
 }
 
 function trackMentions(twitterHandler) {
@@ -85,6 +86,24 @@ function trackMentions(twitterHandler) {
   });
 }
 
+function imageSearch() {
+  let url = `${URL_GOOGLE_CS}?key=${GOOGLE_CUSTOM_SEARCH}&cx=${GOOGLE_CS_ID}&q=chuck+norris+portrait&searchType=image&imgColorType=color`;
+  console.log(url);
+  return new Promise(function(resolve, reject) {
+    request({
+      url: url,
+      method: 'GET',
+    }, function(err, res) {
+      if(err) {
+        return err;
+      }
+
+      console.log(res.body);
+    });
+  });
+};
+
 /*ACTIONS*/
-trackMentions('@ChuckieNorrisie');
-tweetJoke();
+imageSearch();
+// trackMentions('@ChuckieNorrisie');
+// tweetJoke();
