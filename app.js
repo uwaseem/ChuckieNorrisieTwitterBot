@@ -21,6 +21,10 @@ const T = new Twit({
   'access_token_secret': ACCESS_TOKEN_SECRET
 });
 
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 function offensiveJoke(word) {
   if(!wordfilter.blacklisted(word)) {
     return false;
@@ -107,11 +111,11 @@ function imageSearch(query) {
 
 async function replyTweetWithJoke() {
   let images = await imageSearch('Chuck Norris Portrait');
-  let image = images[Math.floor(Math.random() * 10)];
+  let image = images[randomNumber(0, 9)];
   console.log(image);
 }
 
 /*ACTIONS*/
-replyTweetWithJoke();
+// replyTweetWithJoke();
 // trackMentions('@ChuckieNorrisie');
 // updateTwitter();
