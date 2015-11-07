@@ -2,7 +2,8 @@ let express = require('express');
 let Twit = require('twit');
 let request = require('request');
 
-import { randomNumber, offensiveJoke } from './helpers/helpers';
+import { randomNumber, offensiveJoke, filterJoke } from './helpers/helpers';
+console.log(offensiveJoke('nigga'), filterJoke('wowowo'));
 
 let app = express();
 app.get('/', function(req, res) {
@@ -24,14 +25,6 @@ const T = new Twit({
   'access_token': ACCESS_TOKEN,
   'access_token_secret': ACCESS_TOKEN_SECRET
 });
-
-function filterJoke(joke) {
-  if(joke.match(/(&quot;)/)) {
-    return true;
-  } else {
-    return false;
-  }
-}
 
 function getRandomJoke(maxLength) {
   let url = `${URL_ICNDB}/random?exclude=[explicit]`;

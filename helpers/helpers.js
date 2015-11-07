@@ -12,7 +12,16 @@ function offensiveJoke(word) {
   }
 }
 
+function filterJoke(joke) {
+  if(joke.match(/(&quot;)/)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 module.exports = {
   randomNumber: randomNumber,
-  offensiveJoke: offensiveJoke
+  offensiveJoke: offensiveJoke,
+  filterJoke: filterJoke
 };
