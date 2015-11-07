@@ -9,7 +9,8 @@ app.get('/', function(req, res) {
 });
 app.listen(process.env.PORT || 3000);
 
-import { API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET, GOOGLE_API_KEY, CUSTOM_SEARCH_ID } from './config/config.json';
+let { API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET } = require ('./config/config.json').TWITTER;
+let { GOOGLE_API_KEY, CUSTOM_SEARCH_ID } = require ('./config/config.json').GOOGLE;
 
 const URL_ICNDB = 'http://api.icndb.com/jokes';
 const URL_GOOGLE_CS = 'https://www.googleapis.com/customsearch/v1';
