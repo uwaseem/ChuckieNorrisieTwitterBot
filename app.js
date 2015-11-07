@@ -12,32 +12,10 @@ app.listen(process.env.PORT || 3000);
 
 let { GOOGLE_API_KEY, CUSTOM_SEARCH_ID } = require ('./config/config.json').GOOGLE;
 
-const URL_ICNDB = 'http://api.icndb.com/jokes';
+
 const URL_GOOGLE_CS = 'https://www.googleapis.com/customsearch/v1';
 
 const SHORTENED_LINK_LENGTH = 23;
-
-function getRandomJoke(maxLength) {
-  let url = `${URL_ICNDB}/random?exclude=[explicit]`;
-
-  return new Promise(function(resolve, reject) {
-    request({
-      url: url,
-      method: 'GET'
-    }, function(err, res) {
-      if(err) {
-        return err;
-      }
-      let { value } = JSON.parse(res.body);
-
-      if(offensiveJoke(value.joke) || filterJoke(value.joke) || value.joke.length > maxLength) {
-        getRandomJoke(maxLength);
-      } else {
-        resolve(value.joke);
-      }
-    });
-  });
-}
 
 function updateTwitter() {
   setInterval(async function() {
