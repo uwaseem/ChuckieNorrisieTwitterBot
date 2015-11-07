@@ -11,4 +11,4 @@ const T = new Twit({
 
 module.exports = {
   T: T
-}
+};
