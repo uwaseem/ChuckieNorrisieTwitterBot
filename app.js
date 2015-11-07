@@ -2,7 +2,7 @@ let express = require('express');
 let request = require('request');
 
 import { randomNumber, offensiveJoke, filterJoke } from './helpers/helpers';
-import { postTweet, postTweetMedia } from '.helpers/twitterHandler';
+import { postTweet, postTweetMedia } from './helpers/twitterActions';
 
 let app = express();
 app.get('/', function(req, res) {
