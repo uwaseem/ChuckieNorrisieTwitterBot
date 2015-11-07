@@ -1,9 +1,8 @@
 let express = require('express');
-let Twit = require('twit');
 let request = require('request');
 
 import { randomNumber, offensiveJoke, filterJoke } from './helpers/helpers';
-console.log(offensiveJoke('nigga'), filterJoke('wowowo'));
+import { postTweet, postTweetMedia } from '.helpers/twitterHandler';
 
 let app = express();
 app.get('/', function(req, res) {
@@ -11,20 +10,12 @@ app.get('/', function(req, res) {
 });
 app.listen(process.env.PORT || 3000);
 
-let { API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET } = require ('./config/config.json').TWITTER;
 let { GOOGLE_API_KEY, CUSTOM_SEARCH_ID } = require ('./config/config.json').GOOGLE;
 
 const URL_ICNDB = 'http://api.icndb.com/jokes';
 const URL_GOOGLE_CS = 'https://www.googleapis.com/customsearch/v1';
 
 const SHORTENED_LINK_LENGTH = 23;
-
-const T = new Twit({
-  'consumer_key': API_KEY,
-  'consumer_secret': API_SECRET,
-  'access_token': ACCESS_TOKEN,
-  'access_token_secret': ACCESS_TOKEN_SECRET
-});
 
 function getRandomJoke(maxLength) {
   let url = `${URL_ICNDB}/random?exclude=[explicit]`;
@@ -45,29 +36,6 @@ function getRandomJoke(maxLength) {
         resolve(value.joke);
       }
     });
-  });
-}
-
-function postTweet(tweet) {
-  T.post('statuses/update', { status: tweet }, function(err, data, response) {
-    if(err) {
-      console.log('Failed to post tweet');
-      return err;
-    }
-  });
-}
-
-function postTweetMedia(tweet, media) {
-  console.log('masuk media post');
-  T.post('media/upload', {media_date: media}, function(err, data, response) {
-    if(err) {
-      console.log('Failed to post tweet with media ', err);
-      return err;
-    }
-    let mediaId = data.media_id_string;
-    let fullTweet = {status: tweet, media_ids: [mediaId]};
-
-    postTweet(fullTweet);
   });
 }
 
