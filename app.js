@@ -1,7 +1,8 @@
 let express = require('express');
 let Twit = require('twit');
-let wordfilter = require('wordfilter');
 let request = require('request');
+
+import { randomNumber, offensiveJoke } from './helpers/helpers';
 
 let app = express();
 app.get('/', function(req, res) {
@@ -23,18 +24,6 @@ const T = new Twit({
   'access_token': ACCESS_TOKEN,
   'access_token_secret': ACCESS_TOKEN_SECRET
 });
-
-function randomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-function offensiveJoke(word) {
-  if(!wordfilter.blacklisted(word)) {
-    return false;
-  } else {
-    return true;
-  }
-}
 
 function filterJoke(joke) {
   if(joke.match(/(&quot;)/)) {
@@ -135,5 +124,5 @@ async function replyTweetWithJoke(asker) {
 
 /*ACTIONS*/
 // replyTweetWithJoke('@UWaseem24');
-trackMentions('@ChuckieNorrisie');
-updateTwitter();
+// trackMentions('@ChuckieNorrisie');
+// updateTwitter();
