@@ -3,14 +3,13 @@ import { T } from './twitterConnect';
 function postTweet(tweet) {
   T.post('statuses/update', { status: tweet }, function(err, data, response) {
     if(err) {
-      console.log('Failed to post tweet');
+      console.log('Failed to post tweet', err);
       return err;
     }
   });
 }
 
 function postTweetMedia(tweet, media) {
-  console.log('masuk media post');
   T.post('media/upload', {media_date: media}, function(err, data, response) {
     if(err) {
       console.log('Failed to post tweet with media ', err);
