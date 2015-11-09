@@ -11,18 +11,19 @@ function trackMentions(twitterHandler) {
 
   stream.on('tweet', function(tweet) {
     let asker = `@${tweet.user.screen_name}`;
-    replyTweetWithJoke(asker);
+    let tweetId = tweet.id_str;
+    replyTweetWithJoke(asker, tweetId);
   });
 }
 
-async function replyTweetWithJoke(asker) {
+async function replyTweetWithJoke(asker, tweetId) {
   // let images = await imageSearch('Chuck Norris Portrait');
   // let imageLink = images[randomNumber(0, 9)].image.thumbnailLink;
   // let imageLink = images[randomNumber(0, 9)].link;
   let randomJoke = await getRandomJoke(140 - asker.length/* - SHORTENED_LINK_LENGTH*/);
   let tweet = `${asker} ${randomJoke}`;
   // postTweetMedia(tweet, new Buffer(imageLink).toString('base64'));
-  postTweet(tweet);
+  postTweet(tweet, tweetId);
 }
 
 function imageSearch(query) {
