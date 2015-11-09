@@ -1,7 +1,7 @@
 import { T } from './twitterConnect';
 
-function postTweet(tweet) {
-  T.post('statuses/update', { status: tweet }, function(err, data, response) {
+function postTweet(tweet, tweetId) {
+  T.post('statuses/update', {status: tweet, in_reply_to_status_id: tweetId}, function(err, data, response) {
     if(err) {
       console.log('Failed to post tweet', err);
       return err;
