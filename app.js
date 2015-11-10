@@ -1,9 +1,10 @@
 let express = require('express');
+let app = express();
 
 import { updateTwitter } from './actions/updateTwitter';
 import { replyMentions } from './actions/replyMentions';
+import { tweetNewFollowers } from './actions/tweetNewFollowers';
 
-let app = express();
 app.get('/', function(req, res) {
   res.status(200).json({message:'The twitter bot is working just fine'});
 });
@@ -14,3 +15,4 @@ setInterval(function() {
   updateTwitter();
 }, 6 * 1000 * 60 * 60);
 replyMentions();
+tweetNewFollowers();
