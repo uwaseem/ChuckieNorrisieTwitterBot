@@ -4,6 +4,7 @@
 This bot currently does 2 things:
 * Tweets a random Chuck Norris joke every 6 hours once
 * Replies back when mentioned with a random Chuck Norris joke
+* Tweets a specific Chuck Norris joke to new followers
 
 I'll definitely be adding more capabilities and features, focusing on engagement & interaction with random twitter users soon. Please do share any suggestions that you might have in making this bot more interactive.
 
