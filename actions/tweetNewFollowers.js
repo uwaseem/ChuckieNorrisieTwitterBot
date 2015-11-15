@@ -1,4 +1,4 @@
-import { T } from '../helpers/twitterConnect';
+import { T }         from '../helpers/twitterConnect';
 import { postTweet } from '../helpers/twitterActions';
 
 function tweetNewFollowers() {

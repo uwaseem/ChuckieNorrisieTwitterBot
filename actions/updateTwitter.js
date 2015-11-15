@@ -1,5 +1,5 @@
+import { postTweet }     from '../helpers/twitterActions';
 import { getRandomJoke } from '../helpers/helpers';
-import { postTweet } from '../helpers/twitterActions';
 
 async function updateTwitter() {
   let randomJoke = await getRandomJoke(140);
