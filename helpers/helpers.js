@@ -30,6 +30,8 @@ function filterJoke(joke) {
 
 function getRandomJoke(maxLength, firstName, lastName) {
   let url = `${URL_ICNDB}/random?exclude=[explicit]`;
+  firstName = firstName || false;
+  lastName = lastName || false;
 
   if(firstName && lastName) {
     url = `${url}&firstName=${firstName}&lastName=${lastName}`;
@@ -46,7 +48,7 @@ function getRandomJoke(maxLength, firstName, lastName) {
       let { value } = JSON.parse(res.body);
 
       if(offensiveJoke(value.joke) || filterJoke(value.joke) || value.joke.length > maxLength) {
-        getRandomJoke(maxLength, firstName, lastName);
+        getRandomJoke(maxLength, firstName , lastName);
       } else {
         resolve(value.joke);
       }
