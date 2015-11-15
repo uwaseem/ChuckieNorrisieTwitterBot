@@ -1,10 +1,11 @@
 # Chuckie Norrisie Twitter Bot
 [@ChuckieNorrisie](https://twitter.com/ChuckieNorrisie) is a twitter bot that tweets random Chuck Norris jokes.
 
-This bot currently does 3 things:
-* Tweets a random Chuck Norris joke every 6 hours once
-* Replies back when mentioned with a random Chuck Norris joke
+This bot currently does 4 things:
+* Tweets a random Chuck Norris joke once every 6 hours
+* Replies back with a random Chuck Norris joke when mentioned
 * Tweets a specific Chuck Norris joke to new followers
+* Replies with a customised joke Chuck Norris to random Twitter users
 
 I'll definitely be adding more capabilities and features, focusing on engagement & interaction with random twitter users soon. Please do share any suggestions that you might have in making this bot more interactive.
 
