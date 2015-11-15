@@ -34,7 +34,7 @@ function getRandomJoke(maxLength, firstName, lastName) {
   if(firstName && lastName) {
     url = `${url}&firstName=${firstName}&lastName=${lastName}`;
   }
-  console.log('get random joke with url --> ', url);
+
   return new Promise(function(resolve, reject) {
     request({
       url: url,
