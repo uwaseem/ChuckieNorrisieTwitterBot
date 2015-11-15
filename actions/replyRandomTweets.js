@@ -3,7 +3,7 @@ import { postTweet } from '../helpers/twitterActions';
 import { breakName, getRandomJoke } from '../helpers/helpers';
 
 function trackTweets() {
-  let stream = T.stream('statuses/filter', {track: 'I want to be like Chuck Norris'});
+  let stream = T.stream('statuses/filter', {track: 'I want to be Chuck Norris'});
 
   stream.on('tweet', function(tweet) {
     let asker = `@${tweet.user.screen_name}`;
