@@ -12,9 +12,9 @@ app.get('/', function(req, res) {
 app.listen(process.env.PORT || 3000);
 
 /* ACTIONS */
-/*setInterval(function() {
+setInterval(function() {
   updateTwitter();
 }, 6 * 1000 * 60 * 60);
 replyMentions();
-tweetNewFollowers();*/
+tweetNewFollowers();
 replyRandomTweets();
