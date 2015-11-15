@@ -1,4 +1,4 @@
-import { postTweet }     from '../helpers/twitterActions';
+import { postTweet } from '../helpers/twitterActions';
 import { getRandomJoke } from '../helpers/helpers';
 
 async function updateTwitter() {

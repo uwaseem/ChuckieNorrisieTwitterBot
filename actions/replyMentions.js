@@ -1,5 +1,5 @@
-import { T }             from '../helpers/twitterConnect';
-import { postTweet }     from '../helpers/twitterActions';
+import { T } from '../helpers/twitterConnect';
+import { postTweet } from '../helpers/twitterActions';
 import { getRandomJoke } from '../helpers/helpers';
 
 let { GOOGLE_API_KEY, CUSTOM_SEARCH_ID } = require ('../config/config.json').GOOGLE;

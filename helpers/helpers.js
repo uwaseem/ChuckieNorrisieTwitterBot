@@ -7,6 +7,11 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+function breakName(fullName, number) {
+  let name = fullName.split(" ", number);
+  return name;
+}
+
 function offensiveJoke(word) {
   if(!wordfilter.blacklisted(word)) {
     return false;
@@ -23,8 +28,12 @@ function filterJoke(joke) {
   }
 }
 
-function getRandomJoke(maxLength) {
+function getRandomJoke(maxLength, firstName, lastName) {
   let url = `${URL_ICNDB}/random?exclude=[explicit]`;
+
+  if(firstName && lastName) {
+    url = `url&firstName=${firstName}&lastName=${lastName}`;
+  }
 
   return new Promise(function(resolve, reject) {
     request({
@@ -47,6 +56,7 @@ function getRandomJoke(maxLength) {
 
 module.exports = {
   randomNumber: randomNumber,
+  breakName: breakName,
   offensiveJoke: offensiveJoke,
   filterJoke: filterJoke,
   getRandomJoke: getRandomJoke
