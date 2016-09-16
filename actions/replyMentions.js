@@ -2,7 +2,8 @@ import { T } from '../helpers/twitterConnect';
 import { postTweet } from '../helpers/twitterActions';
 import { getRandomJoke } from '../helpers/helpers';
 
-let { GOOGLE_API_KEY, CUSTOM_SEARCH_ID } = require ('../config/config.json').GOOGLE;
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+const GOOGLE_CUSTOM_SEARCH_ID = process.env.GOOGLE_CUSTOM_SEARCH_ID;
 
 const URL_GOOGLE_CS = 'https://www.googleapis.com/customsearch/v1';
 const SHORTENED_LINK_LENGTH = 23;
@@ -29,7 +30,7 @@ async function replyTweetWithJoke(asker, tweetId) {
 
 function imageSearch(query) {
   query = query.replace(/ /g, '+');
-  let url = `${URL_GOOGLE_CS}?key=${GOOGLE_API_KEY}&cx=${CUSTOM_SEARCH_ID}&q=${query}&searchType=image&imgColorType=color`;
+  let url = `${URL_GOOGLE_CS}?key=${GOOGLE_API_KEY}&cx=${GOOGLE_CUSTOM_SEARCH_ID}&q=${query}&searchType=image&imgColorType=color`;
 
   return new Promise(function(resolve, reject) {
     request({
