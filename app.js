@@ -14,7 +14,7 @@ app.listen(process.env.PORT || 3000);
 /* ACTIONS */
 setInterval(function() {
   updateTwitter();
-}, 8 * 1000 * 60 * 60);
+}, 6 * 1000 * 60 * 60);
 replyMentions();
 tweetNewFollowers();
 replyRandomTweets();
