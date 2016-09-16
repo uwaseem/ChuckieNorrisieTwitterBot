@@ -1,6 +1,9 @@
 let Twit = require('twit');
 
-let { API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET } = require ('../config/config.json').TWITTER;
+const API_KEY = TWITTER.API_KEY;
+const API_SECRET = TWITTER.API_SECRET;
+const ACCESS_TOKEN = TWITTER.ACCESS_TOKEN;
+const ACCESS_TOKEN_SECRET = TWITTER.ACCESS_TOKEN_SECRET;
 
 const T = new Twit({
   'consumer_key': API_KEY,
