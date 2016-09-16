@@ -2,12 +2,6 @@ import { T } from '../helpers/twitterConnect';
 import { postTweet } from '../helpers/twitterActions';
 import { getRandomJoke } from '../helpers/helpers';
 
-const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
-const GOOGLE_CUSTOM_SEARCH_ID = process.env.GOOGLE_CUSTOM_SEARCH_ID;
-
-const URL_GOOGLE_CS = 'https://www.googleapis.com/customsearch/v1';
-const SHORTENED_LINK_LENGTH = 23;
-
 function trackMentions(twitterHandler) {
   let stream = T.stream('statuses/filter', {track:twitterHandler});
 
@@ -19,31 +13,9 @@ function trackMentions(twitterHandler) {
 }
 
 async function replyTweetWithJoke(asker, tweetId) {
-  // let images = await imageSearch('Chuck Norris Portrait');
-  // let imageLink = images[randomNumber(0, 9)].image.thumbnailLink;
-  // let imageLink = images[randomNumber(0, 9)].link;
-  let randomJoke = await getRandomJoke(140 - asker.length/* - SHORTENED_LINK_LENGTH*/);
+  let randomJoke = await getRandomJoke(140 - asker.length);
   let tweet = `${asker} ${randomJoke}`;
-  // postTweetMedia(tweet, new Buffer(imageLink).toString('base64'));
   postTweet(tweet, tweetId);
-}
-
-function imageSearch(query) {
-  query = query.replace(/ /g, '+');
-  let url = `${URL_GOOGLE_CS}?key=${GOOGLE_API_KEY}&cx=${GOOGLE_CUSTOM_SEARCH_ID}&q=${query}&searchType=image&imgColorType=color`;
-
-  return new Promise(function(resolve, reject) {
-    request({
-      url: url,
-      method: 'GET',
-    }, function(err, res) {
-      if(err) {
-        return err;
-      }
-      let { items } = JSON.parse(res.body);
-      resolve(items);
-    });
-  });
 }
 
 function replyMentions() {
