@@ -1,7 +1,7 @@
 import { T } from '../helpers/twitterConnect';
 import { postTweet } from '../helpers/twitterActions';
 
-function tweetNewFollowers() {
+export function tweetNewFollowers() {
   let stream = T.stream('user');
 
   stream.on('follow', function (event) {
@@ -11,7 +11,3 @@ function tweetNewFollowers() {
     postTweet(tweet, followingId);
   });
 }
-
-module.exports = {
-  tweetNewFollowers: tweetNewFollowers
-};
