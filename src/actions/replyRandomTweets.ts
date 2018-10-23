@@ -19,10 +19,6 @@ async function replyTweetWithJoke(asker, name, tweetId) {
   postTweet(tweet, tweetId);
 }
 
-function replyRandomTweets() {
+export function replyRandomTweets() {
   trackTweets();
 }
-
-module.exports = {
-  replyRandomTweets: replyRandomTweets
-};

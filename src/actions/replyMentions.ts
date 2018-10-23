@@ -18,10 +18,6 @@ async function replyTweetWithJoke(asker, tweetId) {
   postTweet(tweet, tweetId);
 }
 
-function replyMentions() {
+export function replyMentions() {
   trackMentions('@ChuckieNorrisie');
 }
-
-module.exports = {
-  replyMentions: replyMentions
-};

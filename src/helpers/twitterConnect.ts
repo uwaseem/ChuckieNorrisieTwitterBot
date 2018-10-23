@@ -5,11 +5,9 @@ const API_SECRET = process.env.TWITTER_API_SECRET
 const ACCESS_TOKEN = process.env.TWITTER_ACCESS_TOKEN
 const ACCESS_TOKEN_SECRET = process.env.TWITTER_ACCESS_TOKEN_SECRET
 
-const T = new Twit({
+export const T = new Twit({
   'consumer_key': API_KEY,
   'consumer_secret': API_SECRET,
   'access_token': ACCESS_TOKEN,
   'access_token_secret': ACCESS_TOKEN_SECRET
 })
-
-module.exports = { T }

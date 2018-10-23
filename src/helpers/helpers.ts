@@ -1,18 +1,18 @@
-let wordfilter = require('wordfilter');
+import * as wordfilter from 'wordfilter'
 let request = require('request');
 
 const URL_ICNDB = 'http://api.icndb.com/jokes';
 
-function randomNumber(min, max) {
+export function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function breakName(fullName, number) {
+export function breakName(fullName, number) {
   let name = fullName.split(" ", number);
   return name;
 }
 
-function offensiveJoke(word) {
+export function offensiveJoke(word) {
   if(!wordfilter.blacklisted(word)) {
     return false;
   } else {
@@ -20,7 +20,7 @@ function offensiveJoke(word) {
   }
 }
 
-function filterJoke(joke) {
+export function filterJoke(joke) {
   if(joke.match(/(&quot;)|(\?[^$\?])/)) {
     return true;
   } else {
@@ -28,7 +28,7 @@ function filterJoke(joke) {
   }
 }
 
-function getRandomJoke(maxLength, firstName, lastName) {
+export function getRandomJoke(maxLength, firstName?, lastName?) {
   let url = `${URL_ICNDB}/random?exclude=[explicit]`;
   firstName = firstName || false;
   lastName = lastName || false;
@@ -55,11 +55,3 @@ function getRandomJoke(maxLength, firstName, lastName) {
     });
   });
 }
-
-module.exports = {
-  randomNumber: randomNumber,
-  breakName: breakName,
-  offensiveJoke: offensiveJoke,
-  filterJoke: filterJoke,
-  getRandomJoke: getRandomJoke
-};
