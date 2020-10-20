@@ -5,10 +5,10 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "rm -rf ./dist && tsc",
-    "fix": "ts-standard --fix",
     "start": "npm run build && node ./dist/index.js",
     "start-local": "heroku local",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -r ts-node/register test/**/*.test.ts",
+    "ts-standard": "ts-standard --fix"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,10 @@
   },
   "devDependencies": {
     "@types/express": "^4.16.0",
+    "@types/mocha": "^8.0.3",
     "@types/node": "^10.12.0",
+    "mocha": "^8.2.0",
+    "ts-node": "^9.0.0",
     "ts-standard": "^9.0.0",
     "typescript": "^4.0.3"
   }
