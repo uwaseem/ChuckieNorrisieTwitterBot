@@ -1,6 +1,6 @@
 import { T } from '../helpers/twitterConnect'
 import { postTweet } from '../helpers/twitterActions'
-import { breakName, getRandomJoke } from '../helpers/helpers'
+import { breakName, getRandomJoke } from '../helpers/utils'
 
 function trackTweets () {
   const stream = T.stream('statuses/filter', { track: 'I want to be Chuck Norris' })
