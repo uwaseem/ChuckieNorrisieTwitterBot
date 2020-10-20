@@ -1,16 +1,16 @@
 import * as express from 'express'
-import { Express } from 'express'
+import { Express, Request, Response } from 'express'
 
-import { updateTwitter } from './actions/updateTwitter'
 import { replyMentions } from './actions/replyMentions'
-import { tweetNewFollowers } from './actions/tweetNewFollowers'
 import { replyRandomTweets } from './actions/replyRandomTweets'
+import { tweetNewFollowers } from './actions/tweetNewFollowers'
+import { updateTwitter } from './actions/updateTwitter'
 
 const app: Express = express()
 
 app.listen(process.env.PORT || 3000)
 
-app.get('/', function (req, res) {
+app.get('/', (req: Request, res: Response) => {
   res.status(200).json({ message: 'The twitter bot is working just fine' })
 })
 
