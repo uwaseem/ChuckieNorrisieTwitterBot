@@ -1,7 +1,7 @@
 import { T } from './twitterConnect'
 
-export function postTweet (tweet, tweetId?) {
-  T.post('statuses/update', { status: tweet, in_reply_to_status_id: tweetId }, function (err, data, response) {
+export function postTweet (tweet: any, tweetId?: string) {
+  T.post('statuses/update', { status: tweet, in_reply_to_status_id: tweetId }, function (err) {
     if (err) {
       console.log('Failed to post tweet', err)
       return err
@@ -9,7 +9,7 @@ export function postTweet (tweet, tweetId?) {
   })
 }
 
-export function postTweetMedia (tweet, media) {
+export function postTweetMedia (tweet: string, media): void {
   T.post('media/upload', { media_date: media }, function (err, data, response) {
     if (err) {
       console.log('Failed to post tweet with media ', err)
