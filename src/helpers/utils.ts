@@ -1,47 +1,36 @@
+import * as request from 'request'
 import * as wordfilter from 'wordfilter'
-const request = require('request')
 
 const URL_ICNDB = 'http://api.icndb.com/jokes'
 
-export function randomNumber (min, max) {
+export function randomNumber (min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-export function breakName (fullName, number) {
-  const name = fullName.split(' ', number)
-  return name
+export function breakName (fullName: string, number: number): string[] {
+  return fullName.split(' ', number)
 }
 
-export function offensiveJoke (word) {
-  if (!wordfilter.blacklisted(word)) {
-    return false
-  } else {
-    return true
-  }
+export function offensiveJoke (word: string): boolean {
+  return !(!wordfilter.blacklisted(word))
 }
 
-export function filterJoke (joke) {
-  if (joke.match(/(&quot;)|(\?[^$\?])/)) {
-    return true
-  } else {
-    return false
-  }
+export function filterJoke (joke): boolean {
+  return !!(joke.match(/(&quot;)|(\?[^$\?])/))
 }
 
-export function getRandomJoke (maxLength, firstName?, lastName?) {
-  let url = `${URL_ICNDB}/random?exclude=[explicit]`
-  firstName = firstName || false
-  lastName = lastName || false
+export function getRandomJoke (maxLength: number, firstName?: string, lastName?: string): Promise<string> {
+  let url: string = `${URL_ICNDB}/random?exclude=[explicit]`
 
   if (firstName && lastName) {
     url = `${url}&firstName=${firstName}&lastName=${lastName}`
   }
 
-  return new Promise(function (resolve, reject) {
+  return new Promise(function (resolve) {
     request({
-      url: url,
+      url,
       method: 'GET'
-    }, function (err, res) {
+    }, (err, res) => {
       if (err) {
         return err
       }
