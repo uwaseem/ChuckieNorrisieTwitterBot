@@ -10,8 +10,8 @@ const app: Express = express()
 
 app.listen(process.env.PORT || 3000)
 
-app.get('/', function(req, res) {
-  res.status(200).json({message:'The twitter bot is working just fine'})
+app.get('/', function (req, res) {
+  res.status(200).json({ message: 'The twitter bot is working just fine' })
 })
 
 /* ACTIONS */
