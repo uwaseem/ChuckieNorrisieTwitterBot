@@ -1,3 +1,5 @@
+[![TS-Standard - Typescript Standard Style Guide](https://badgen.net/badge/code%20style/ts-standard/blue?icon=typescript)](https://github.com/toddbluhm/ts-standard)
+
 # Chuckie Norrisie Twitter Bot
 [@ChuckieNorrisie](https://twitter.com/ChuckieNorrisie) is a twitter bot that tweets random Chuck Norris jokes.
 
