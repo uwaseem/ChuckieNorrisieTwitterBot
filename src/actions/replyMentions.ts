@@ -1,6 +1,6 @@
 import { T } from '../helpers/twitterConnect'
 import { postTweet } from '../helpers/twitterActions'
-import { getRandomJoke } from '../helpers/helpers'
+import { getRandomJoke } from '../helpers/utils'
 
 function trackMentions (twitterHandler) {
   const stream = T.stream('statuses/filter', { track: twitterHandler })
