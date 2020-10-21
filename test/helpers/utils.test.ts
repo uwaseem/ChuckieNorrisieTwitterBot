@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 
-const Assert = require('assert')
+import Assert from 'assert'
 
 import { breakName } from '../../src/helpers/utils'
 

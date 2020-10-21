@@ -5,8 +5,9 @@
     "outDir": "./dist",
     "target": "es6",
     "alwaysStrict": true,
+    "esModuleInterop": true,
     "typeRoots": [ "node_modules/@types" ]
   },
-  "include": [ "./src/**/*" ],
+  "include": [ "./src/**/*", "./test/**/*" ],
   "exclude": [ "node_modules" ]
 }

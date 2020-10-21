@@ -7,12 +7,12 @@ function trackMentions (twitterHandler): void {
 
   stream.on('tweet', (tweet) => {
     const asker: string = `@${tweet.user.screen_name}`
-    const tweetId = tweet.id_str
+    const tweetId: string = tweet.id_str
     replyTweetWithJoke(asker, tweetId)
   })
 }
 
-async function replyTweetWithJoke (asker, tweetId): Promise<void> {
+async function replyTweetWithJoke (asker: string, tweetId: string): Promise<void> {
   const randomJoke: string = await getRandomJoke(140 - asker.length)
   const tweet: string = `${asker} ${randomJoke}`
   postTweet(tweet, tweetId)
