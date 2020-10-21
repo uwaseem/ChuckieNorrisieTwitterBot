@@ -1,5 +1,4 @@
-import * as express from 'express'
-import { Express, Request, Response } from 'express'
+import express, { Express, Request, Response } from 'express'
 
 import { replyMentions } from './actions/replyMentions'
 import { replyRandomTweets } from './actions/replyRandomTweets'

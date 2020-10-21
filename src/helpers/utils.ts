@@ -1,4 +1,5 @@
-import * as request from 'request'
+import Axios from 'axios'
+
 import * as wordfilter from 'wordfilter'
 
 const URL_ICNDB = 'http://api.icndb.com/jokes'
@@ -22,21 +23,15 @@ export async function getRandomJoke (maxLength: number, firstName?: string, last
     url = `${url}&firstName=${firstName}&lastName=${lastName}`
   }
 
-  return await new Promise((resolve) => {
-    request({
-      url,
-      method: 'GET'
-    }, (err, res) => {
-      if (err) {
-        return err
-      }
-      const { value: { joke } } = JSON.parse(res.body)
+  try {
+    const { data: { value: { joke } } } = await Axios.get(url)
 
-      if (offensiveJoke(joke) || filterJoke(joke) || joke.length > maxLength) {
-        getRandomJoke(maxLength, firstName, lastName)
-      } else {
-        resolve(joke)
-      }
-    })
-  })
+    if (offensiveJoke(joke) || filterJoke(joke) || joke.length > maxLength) {
+      getRandomJoke(maxLength, firstName, lastName)
+    } else {
+      return joke
+    }
+  } catch (error) {
+    return error
+  }
 }
