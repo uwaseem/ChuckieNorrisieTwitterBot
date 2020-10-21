@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/uwaseem/ChuckieNorrisieTwitterBot#readme",
   "dependencies": {
+    "axios": "^0.20.0",
     "express": "^4.16.4",
-    "request": "^2.65.0",
     "twit": "^2.1.0",
     "wordfilter": "^0.2.1"
   },
