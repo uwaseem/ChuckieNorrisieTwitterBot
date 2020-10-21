@@ -1,7 +1,5 @@
-<!--- Provide a general summary of your changes in the Title above -->
-
 ## Description
-<!--- Describe your changes in detail -->
+<!--- Provide a general summary of your changes in the Title above -->
 
 ## Related Issue
 <!--- This project only accepts pull requests related to open issues -->
@@ -20,10 +18,10 @@
 ## Screenshots (if appropriate):
 
 ## Types of changes
-<!--- What types of changes does your code introduce? Put an `x` in all the boxes that apply: -->
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to change)
+<!--- What types of issue does your code addresses? Put an `x` in all the boxes that apply: -->
+- [ ] BUG (fix an existing issue)
+- [ ] CHORE (general cleanup to the codebase)
+- [ ] FEEATURE (introducting a new functionality)
 
 ## Checklist:
 <!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
