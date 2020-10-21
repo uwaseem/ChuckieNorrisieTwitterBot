@@ -11,18 +11,18 @@ function filterJoke (joke): boolean {
   return !!(joke.match(/(&quot;)|(\?[^$\?])/))
 }
 
-export function breakName(fullName: string, number: number): string[] {
+export function breakName (fullName: string, number: number): string[] {
   return fullName.split(' ', number)
 }
 
-export function getRandomJoke (maxLength: number, firstName?: string, lastName?: string): Promise<string> {
+export async function getRandomJoke (maxLength: number, firstName?: string, lastName?: string): Promise<string> {
   let url: string = `${URL_ICNDB}/random?exclude=[explicit]`
 
   if (firstName && lastName) {
     url = `${url}&firstName=${firstName}&lastName=${lastName}`
   }
 
-  return new Promise((resolve) => {
+  return await new Promise((resolve) => {
     request({
       url,
       method: 'GET'
