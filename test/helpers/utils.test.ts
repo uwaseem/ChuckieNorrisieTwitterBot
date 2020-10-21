@@ -13,8 +13,8 @@ describe('breakName', () => {
       Assert(Array.isArray(name))
     })
 
-    it('should return less or equal names then requested', () => {
-      Assert.strictEqual(name.length, 2)
+    it('should return broken names less or equal then requested', () => {
+      Assert(name.length <= number)
     })
   })
 })
