@@ -14,7 +14,7 @@ app.get('/', (req: Request, res: Response) => {
 })
 
 /* ACTIONS */
-setInterval(() => { updateTwitter() }, 6 * 1000 * 60 * 60)
+/* setInterval(() => { updateTwitter() }, 6 * 1000 * 60 * 60)
 replyMentions()
 tweetNewFollowers()
-replyRandomTweets()
+replyRandomTweets() */
