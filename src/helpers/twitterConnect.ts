@@ -1,4 +1,4 @@
-import * as Twit from 'twit'
+import Twit from 'twit'
 
 const API_KEY = process.env.TWITTER_API_KEY
 const API_SECRET = process.env.TWITTER_API_SECRET
