@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/uwaseem/ChuckieNorrisieTwitterBot#readme",
   "dependencies": {
+    "@types/express": "^4.16.0",
+    "@types/node": "^10.17.40",
     "axios": "^0.20.0",
     "express": "^4.16.4",
     "twit": "^2.1.0",
@@ -29,9 +31,7 @@
     "wordfilter": "^0.2.1"
   },
   "devDependencies": {
-    "@types/express": "^4.16.0",
     "@types/mocha": "^8.0.3",
-    "@types/node": "^10.17.40",
     "husky": "^4.3.0",
     "mocha": "^8.2.0",
     "ts-node": "^9.0.0",
