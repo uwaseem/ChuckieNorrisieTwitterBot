@@ -14,8 +14,8 @@ app.get('/', (req: Request, res: Response) => {
   res.status(200).json({ message: 'The twitter bot is working just fine' })
 })
 
-app.get('/joke', (req: Request, res: Response) => {
-  res.status(200).json({ message: getRandomJoke(300) })
+app.get('/joke', async (req: Request, res: Response) => {
+  res.status(200).json({ message: await getRandomJoke(300) })
 })
 
 /* ACTIONS */
