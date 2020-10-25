@@ -4,10 +4,11 @@
   "description": "Twitter bot that tweets random Chuck Norris jokes.",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "rm -rf ./dist && tsc",
-    "start": "npm install && npm run build && node ./dist/index.js",
+    "build": "rm -rf ./dist && npm run tsc",
+    "start": "npm run build && node ./dist/index.js",
     "start-local": "heroku local",
     "test": "mocha -r ts-node/register test/**/*.test.ts",
+    "tsc": "tsc",
     "ts-standard": "ts-standard --fix"
   },
   "repository": {
