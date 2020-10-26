@@ -18,9 +18,7 @@ This bot currently does 4 things:
 I'll definitely be adding more capabilities and features, focusing on engagement & interaction with random twitter users soon. Please do share any suggestions that you might have in making this bot more interactive.
 
 ## Contributing
-Everyone is welcomed to contribute to this project. Please check the [issues](https://github.com/uwaseem/ChuckieNorrisieTwitterBot/issues) and pick something from there.
-
-If you don't find any issues interesting but have something in mind, please create an issue first. If it adds value to the project, you can then submit a PR.
+Interested to contribute? Please checkout the [Contributing Guide](.github/CONTRIBUTING.md) to get started.
 
 ## License
 Copyright (c) 2015 Ubaidillah Waseem
