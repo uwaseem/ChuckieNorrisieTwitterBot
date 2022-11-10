@@ -33,7 +33,7 @@
   "devDependencies": {
     "@types/mocha": "^8.0.3",
     "husky": "^4.3.0",
-    "mocha": "^8.2.0",
+    "mocha": "^10.1.0",
     "ts-node": "^9.0.0",
     "ts-standard": "^9.0.0"
   },
